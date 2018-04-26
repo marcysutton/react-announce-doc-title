@@ -40,28 +40,7 @@ AnnounceDocTitle.prototype.render = function() {
   }
 };
 
-var wrappedAnnounceDocTitle = withSideEffect(
+module.exports = withSideEffect(
   reducePropsToState,
   handleStateChangeOnClient
-)(AnnounceDocTitle);
-
-function A11yToolkitAnnouncer() {}
-A11yToolkitAnnouncer.prototype.render = function() {
-  return React.createElement('div', {
-    id:'a11y-toolkit-announcer', 
-    'aria-live': 'polite',
-    style: {
-      position: 'absolute',
-      left: '-10000px',
-      top: 'auto',
-      width: '1px',
-      height: '1px',
-      overflow: 'hidden',
-    }
-  });
-};
-
-module.exports = {
-  AnnounceDocTitle: wrappedAnnounceDocTitle,
-  A11yToolkitAnnouncer: A11yToolkitAnnouncer,
-};
+)(AnnounceDocTitle)
