@@ -2,6 +2,8 @@
 
 var React = require('react'),
     withSideEffect = require('react-side-effect'),
+    PropTypes = require('prop-types'),
+    createClass = require('create-react-class'),
     a11yToolkit = require('a11y-toolkit');
 
 function reducePropsToState(propsList) {
@@ -23,41 +25,41 @@ function handleStateChangeOnClient(title) {
   }
 }
 
-var AnnounceDocTitle = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string.isRequired
-  },
+function AnnounceDocTitle() {}
+AnnounceDocTitle.prototype = Object.create(React.Component.prototype);
+AnnounceDocTitle.displayName = 'AnnounceDocTitle';
+AnnounceDocTitle.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
-  render: function render() {
-    if (this.props.children) {
-      return React.Children.only(this.props.children);
-    } else {
-      return null;
-    }
+AnnounceDocTitle.prototype.render = function() {
+  if (this.props.children) {
+    return React.Children.only(this.props.children);
+  } else {
+    return null;
   }
-});
+};
 
 var wrappedAnnounceDocTitle = withSideEffect(
   reducePropsToState,
   handleStateChangeOnClient
 )(AnnounceDocTitle);
 
-var A11yToolkitAnnouncer = React.createClass({
-  render: function() {
-    return React.createElement('div', {
-      id:'a11y-toolkit-announcer', 
-      'aria-live': 'polite',
-      style: {
-        position: 'absolute',
-        left: '-10000px',
-        top: 'auto',
-        width: '1px',
-        height: '1px',
-        overflow: 'hidden',
-      }
-    });
-  }
-});
+function A11yToolkitAnnouncer() {}
+A11yToolkitAnnouncer.prototype.render = function() {
+  return React.createElement('div', {
+    id:'a11y-toolkit-announcer', 
+    'aria-live': 'polite',
+    style: {
+      position: 'absolute',
+      left: '-10000px',
+      top: 'auto',
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+    }
+  });
+};
 
 module.exports = {
   AnnounceDocTitle: wrappedAnnounceDocTitle,

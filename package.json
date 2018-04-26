@@ -32,10 +32,12 @@
     "global": "^4.3.0",
     "jshint": "^2.5.6",
     "mocha": "^2.0.1",
-    "react": "^0.13.0"
+    "react": "^16.3.2"
   },
   "dependencies": {
-    "react-side-effect": "^1.0.0",
-    "a11y-toolkit": "jasonblanchard/a11y-toolkit"
+    "a11y-toolkit": "jasonblanchard/a11y-toolkit",
+    "create-react-class": "^15.6.3",
+    "prop-types": "^15.6.1",
+    "react-side-effect": "^1.0.0"
   }
 }
